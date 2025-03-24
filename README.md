@@ -11,7 +11,6 @@ It also includes an analysis of the numerical error and comments on the results.
 
 ## 📁 Structure
 
-- `main.py`: COS method implementation
 - `src`: ALl python functions we use to do our project
 - `tests`: To test our model
 - `figures/`: Plots showing convergence and pricing accuracy
