@@ -11,33 +11,37 @@ The project is written in Python and structured for clarity, performance, and re
 
 ## 1. Theoretical Background
 
-The COS method is a spectral method based on Fourier-cosine series expansion of the probability density function. It leverages the availability of the characteristic function of the underlying process (e.g., Brownian motion, Heston model).
+The COS method is a numerical method based on the Fourier-cosine series expansion of the probability density function. It relies on the availability of the characteristic function of the log-price process, which is known for many financial models such as the Black-Scholes model (GBM) and the Heston model.
 
-For European options, the price is approximated by:
+For European options, the price is approximated as:
 
-\[ c(x) \approx e^{-rT} \sum_{k=0}^{N-1} Re\left[ \phi\left(\frac{k\pi}{b - a}\right) e^{-i k \pi \frac{a}{b - a}} \right] V_k \]
+```
+Price ≈ exp(-rT) * Σ [ Re( φ(u_k) * exp(-i * u_k * a) ) * V_k ]
+```
 
-Where `V_k` are Fourier-cosine coefficients of the payoff function, and `\phi` is the characteristic function.
+where:
+- `u_k = kπ / (b - a)` for `k = 0, ..., N-1`
+- `φ(u)` is the characteristic function of the log-price
+- `V_k` are the Fourier-cosine coefficients of the payoff function
+- `[a, b]` is a truncation range that captures the probability mass of the log-price
 
-For discretely monitored barrier options (e.g., up-and-out):
-- A similar backward recursion is used as in Bermudan options
-- At each monitoring date, the option value is set to the rebate value if the log-price crosses the barrier
+For discrete barrier options (e.g. up-and-out), the COS method performs backward propagation in time using the characteristic function and updates the value only for log-prices below the barrier at each monitoring date.
 
 ---
 
 ## 2. European Option Pricing
 
-Implemented in `FourierCosineMethod` using the SBM model (lognormal / Black-Scholes dynamics).
+Implemented in `FourierCosineMethod` using the standard Brownian motion (GBM/Black-Scholes model).
 
-**Features:**
-- High accuracy with small N
-- Fast pricing of large strike grids
+### Features
+- High accuracy with a small number of terms `N`
+- Very fast computation, suitable for large grids of strikes
 
-**Results:**
-- Exponential convergence in number of terms N
-- Price vs Strike is smooth and matches Black-Scholes values
+### Results
+- Exponential convergence of error with respect to `N`
+- Smooth price curve across strikes
 
-**Figures:**
+### Figures
 - `figures/european_call_vs_strike.png`
 - `figures/european_call_error_convergence.png`
 
@@ -45,18 +49,18 @@ Implemented in `FourierCosineMethod` using the SBM model (lognormal / Black-Scho
 
 ## 3. Discrete Barrier Option Pricing
 
-Implemented in `FourierCosineBarrierOption`. We price up-and-out options using backward propagation.
+Implemented in `FourierCosineBarrierOption`. We price **up-and-out** barrier options with discrete monitoring dates.
 
-**Features:**
-- Efficient handling of M monitoring dates
-- Rebate handled analytically
-- Uses COS coefficients at each step
+### Features
+- Efficient pricing with `M` monitoring dates
+- Handles rebates if the barrier is crossed
+- Works for call or put payoffs
 
-**Results:**
-- Price decreases as strike increases (closer to barrier)
-- Price decreases as barrier gets closer to spot
+### Results
+- Option price decreases as the strike increases
+- Option price decreases as the barrier gets closer to the spot price
 
-**Figures:**
+### Figures
 - `figures/barrier_vs_strike.png`
 - `figures/barrier_vs_barrier.png`
 
@@ -83,6 +87,6 @@ Implemented in `FourierCosineBarrierOption`. We price up-and-out options using b
 ## 6. To Do
 
 - [ ] Add support for Heston model
-- [ ] Add Bermudan option pricing with early exercise optimization
-- [ ] Add comparison to Carr-Madan FFT pricing
+- [ ] Add down-and-out barrier options
+- [ ] Compare with Carr-Madan FFT method
 
