@@ -16,6 +16,9 @@ It also includes an analysis of the numerical error and comments on the results.
 - `tests`: To test our model
 - `figures/`: Plots showing convergence and pricing accuracy
 
+##  References
+Fang, F. and Oosterlee, C. W. (2008). A novel pricing method for European options based on Fourier-Cosine series expansion
+
 ## 🚀 Requirements
 
 ```bash
