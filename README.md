@@ -51,16 +51,36 @@ Implemented in `FourierCosineMethod` using the standard Brownian motion (GBM/Bla
 
 Implemented in `FourierCosineBarrierOption`. We price **up-and-out** barrier options with discrete monitoring dates.
 
-### Features
-- Efficient pricing with `M` monitoring dates
-- Handles rebates if the barrier is crossed
-- Works for call or put payoffs
+### Pricing Formula
 
-### Results
-- Option price decreases as the strike increases
-- Option price decreases as the barrier gets closer to the spot price
+### Pricing Formula
 
-### Figures
+Let `h = log(H / K)` be the log-barrier level. At maturity `T`, the payoff is:
+
+    v(x, T) = max(S_T - K, 0)     if x < h
+              R_b                 otherwise
+
+At each monitoring date `t_m`, we update the cosine coefficients using:
+
+    V_k(t_{m-1}) = exp(-r * Δt) * Re( φ(u_k) * exp(-i * u_k * a) ) * V_k(t_m)
+
+Then:
+
+- For `x >= h`, the value is replaced with the rebate
+- For `x < h`, we keep the continuation value
+
+This is repeated backward in time over the `M` monitoring steps.
+
+### Features:
+- Efficient handling of M monitoring dates
+- Rebate handled analytically
+- Uses COS coefficients at each step
+
+**Results:**
+- Price decreases as strike increases (closer to barrier)
+- Price decreases as barrier gets closer to spot
+
+**Figures:**
 - `figures/barrier_vs_strike.png`
 - `figures/barrier_vs_barrier.png`
 
