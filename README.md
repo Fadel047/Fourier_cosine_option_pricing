@@ -41,10 +41,6 @@ Implemented in `FourierCosineMethod` using the standard Brownian motion (GBM/Bla
 - Exponential convergence of error with respect to `N`
 - Smooth price curve across strikes
 
-### Figures
-- `figures/european_call_vs_strike.png`
-- `figures/european_call_error_convergence.png`
-
 ---
 
 ## 3. Discrete Barrier Option Pricing
