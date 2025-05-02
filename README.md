@@ -53,7 +53,6 @@ Implemented in `FourierCosineBarrierOption`. We price **up-and-out** barrier opt
 
 ### Pricing Formula
 
-### Pricing Formula
 
 Let `h = log(H / K)` be the log-barrier level. At maturity `T`, the payoff is:
 
@@ -100,7 +99,6 @@ This is repeated backward in time over the `M` monitoring steps.
 ## 5. References
 
 - Fang, F. & Oosterlee, C.W. (2008). A Novel Option Pricing Method Based on Fourier-Cosine Series Expansions.
-- Fang, F. & Oosterlee, C.W. (2009). Pricing Early-Exercise and Discrete Barrier Options by Fourier-Cosine Expansions.
 
 ---
 
