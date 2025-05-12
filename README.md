@@ -26,11 +26,6 @@ The COS method is a fast and accurate technique for pricing options when the cha
 - ✔️ Efficient pricing for multiple strikes
 - ✔️ Error convergence analysis
 
-<div align="center">
-  <img src="figures/european_call_vs_strike.png" width="400">
-  <img src="figures/european_call_error_convergence.png" width="400">
-</div>
-
 ---
 
 ### Discrete Barrier Options
