@@ -4,35 +4,35 @@ This project implements the Fourier-Cosine (COS) method for pricing European and
 
 ---
 
-## 🧠 What is the COS Method?
+##  What is the COS Method?
 
 The COS method is a fast and accurate technique for pricing options when the characteristic function of the log-price is known (e.g., Black-Scholes, Heston, Lévy models). It expands the density function using a Fourier-cosine series and computes the option price via analytical integration.
 
-### ✅ Key Features
+###  Key Features
 
-- 📈 **Exponential convergence** for smooth densities
-- ⚡ **High efficiency** (linear complexity)
-- 🔁 Works with **European options** and **discrete barrier options**
-- 🧩 Easy to extend to complex payoffs
+-  **Exponential convergence** for smooth densities
+-  **High efficiency** (linear complexity)
+-  Works with **European options** and **discrete barrier options**
+-  Easy to extend to complex payoffs
 
 ---
 
-## 📊 Implemented Features
+##  Implemented Features
 
 ### European Options
 
-- ✔️ Call and Put options
-- ✔️ Supports GBM (Black-Scholes) and Heston models
-- ✔️ Efficient pricing for multiple strikes
-- ✔️ Error convergence analysis
+-  Call and Put options
+-  Supports GBM (Black-Scholes) and Heston models
+-  Efficient pricing for multiple strikes
+-  Error convergence analysis
 
 ---
 
 ### Discrete Barrier Options
 
-- ✔️ Up-and-out calls (with or without rebate)
-- ✔️ Handles multiple monitoring dates
-- ✔️ Backward propagation of barrier condition
+-  Up-and-out calls (with or without rebate)
+-  Handles multiple monitoring dates
+-  Backward propagation of barrier condition
 
 ---
 
